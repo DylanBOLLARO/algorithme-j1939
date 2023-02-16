@@ -1,0 +1,1146 @@
+{
+  "0": {
+    "numero": "0000",
+    "titre": "Torque/Speed Control 1",
+    "abreviation": "TSC1",
+    "description": "La trame TSC1 est destiné aux modules prenant le contrôle du moteur. Le taux de mise à jour est fixe et est de 10 ms.",
+    "Data Page": "0",
+    "PDU Format": "0",
+    "PDU Specific": "DA",
+    "priority": "3",
+    "Parameter Group Number": "0",
+    "tauxTr": "10ms",
+    "SPN": {
+      "695": {
+        "numero": "695",
+        "titre": "Override Control Mode",
+        "descriptionspn": "Le mode de commande prioritaire définit le type de commande utilisé. 00 Annulation désactivée : Désactive toute commande existante commandée par la source de cette commande.01 Commande de vitesse : Régule la vitesse en fonction de la valeur de \"vitesse souhaitée\" incluse. 10 Commande de couple : Régule le couple à la valeur de \"couple souhaité\" incluse. 11 Contrôle de la limite de vitesse/couple : Limite la vitesse et/ou le couple en fonction des valeurs limites incluses.",
+        "longueur": "2 bits",
+        "position": "1.1-1.2",
+        "type": "Status"
+      },
+      "696": {
+        "numero": "696",
+        "titre": "Requested Speed Control Conditions",
+        "descriptionspn": "Ce mode indique au système de contrôle du moteur les caractéristiques du régulateur qui sont souhaitées pendant le contrôle de la vitesse. ",
+        "longueur": "2 bits",
+        "position": "1.3-1.4",
+        "resolution": "0.125 rpm/bit",
+        "offset": "0",
+        "type": "Status",
+        "range": "0 à 8 031.875 rpm"
+      },
+      "897": {
+        "numero": "897",
+        "titre": "Override Control Mode Priority",
+        "descriptionspn": "Ce champ est utilisé comme entrée pour le moteur ou le ralentisseur afin de déterminer la priorité du mode de commande prioritaire reçu dans le message de commande de couple/vitesse (voir PGN 0).  La valeur par défaut est 11b (faible priorité).  Il n'est pas nécessaire d'utiliser la même priorité pendant toute la durée de la fonction de neutralisation.  Par exemple, la transmission peut utiliser la priorité 01b (priorité élevée) pendant un changement de vitesse, mais peut régler la priorité sur 11b (priorité basse) à la fin du changement de vitesse pour permettre à la commande de traction d'interagir également avec la limite de couple du moteur.",
+        "longueur": "2 bits",
+        "position": "1.5",
+        "resolution": "0.125 rpm/bit",
+        "offset": "0",
+        "type": "Status",
+        "range": "0 à 8 031.875 rpm"
+      },
+      "898": {
+        "numero": "898",
+        "titre": "Requested Speed/Speed Limit",
+        "descriptionspn": "Paramètre fourni au moteur par des sources externes dans le message de commande de couple/vitesse.  Il s'agit du régime moteur auquel le moteur est censé fonctionner si le mode de contrôle de la vitesse est actif ou du régime moteur que le moteur n'est pas censé dépasser si le mode de limitation de la vitesse est actif.",
+        "longueur": "2 bytes",
+        "position": "2.3",
+        "resolution": "0.125 rpm/bit",
+        "offset": "0",
+        "type": "Status",
+        "range": "0 à 8 031.875 rpm"
+      },
+      "518": {
+        "numero": "518",
+        "titre": "Requested Torque/Torque Limit",
+        "descriptionspn": "Message de commande de couple/vitesse pour contrôler ou limiter le couple de sortie.",
+        "longueur": "1 byte",
+        "position": "4",
+        "resolution": "1 %/bit",
+        "offset": "-125% offset",
+        "type": "Status",
+        "range": "0 to 125% engine torque requests, -125% to 0% for retarder torque requests"
+      }
+    }
+  },
+  "256": {
+    "description": "Transmission Control 1 - TC1",
+    "Transmission Repetition Rate": "5 s",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "207",
+    "PDU Specific": "DA",
+    "Default Priority": "3",
+    "Parameter Group Number": "52992",
+    "SPN": {
+      "7695": {
+        "description SPN": "Ce paramètre indique que le système du véhicule souhaite ignorer la demande actuelle du conducteur concernant le sélecteur de vitesses (par exemple, marche avant, marche arrière) et faire passer la transmission au point mort. \"Manual Return\" (retour manuel) indique que ce paramètre a la capacité de faire passer la transmission au point mort, mais qu'il ne permet pas à la transmission de revenir automatiquement à la gamme une fois le point mort atteint, ou une fois la demande annulée. Voir le paramètre SPN 7696 pour l'état de la transmission et la réponse à cette demande.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "7.1"
+      },
+      "1784": {
+        "description SPN": "Minimum Continuous Engine Speed Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "1785": {
+        "description SPN": "Maximum Continuous Engine Speed Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "2"
+      },
+      "1786": {
+        "description SPN": "Minimum Continuous Engine Torque Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "3"
+      },
+      "1787": {
+        "description SPN": "Maximum Continuous Engine Torque Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "1788": {
+        "description SPN": "Minimum Continuous Retarder Speed Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "5"
+      },
+      "1789": {
+        "description SPN": "Maximum Continuous Retarder Speed Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "6"
+      },
+      "1790": {
+        "description SPN": "Minimum Continuous Retarder Torque Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "7"
+      },
+      "1791": {
+        "description SPN": "Maximum Continuous Retarder Torque Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "8"
+      }
+    }
+  },
+  "57344": {
+    "description": "Cab Message 1 - CM1",
+    "Trans1571ission Repetition Rate": "100 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "",
+    "PDU Format": "",
+    "PDU Specific": "",
+    "Default Priority": "",
+    "Parameter Group Number": "57344",
+    "SPN": {
+      "986": {
+        "description SPN": "Fan speed of the first or only fan in the system as a ratio of the actual fan drive (current speed) to the fully engaged fan drive (maximum fan speed). A two state fan (off/on) will use 0% and 100% respectively. A three state fan (off/intermediate/on) will use 0%, 50% and 100% respectively. A variable speed fan will use 0% to 100%. Multiple fan systems will use 0 to 100% to indicate the percent cooling capacity being provided. Feedback to this request is provided using the estimated fan speed (see SPN 975).",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1691": {
+        "description SPN": "Cab Interior Temperature Command",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1684": {
+        "description SPN": "Auxiliary Heater Coolant Pump Request",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1682": {
+        "description SPN": "Battery Main Switch Hold Request",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1714": {
+        "description SPN": "Operator Seat Direction Switch",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1856": {
+        "description SPN": "Seat Belt Switch",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "5630": {
+        "description SPN": "La pression différentielle entre l'entrée et la sortie du papillon des gaz 1 (SPN 51).  La pression différentielle est mesurée à partir de l'entrée par rapport à la sortie du papillon des gaz.",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1655": {
+        "description SPN": "Vehicle Limiting Speed Governor Decrement Switch",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1654": {
+        "description SPN": "Vehicle Limiting Speed Governor Increment Switch",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1653": {
+        "description SPN": "Vehicle Limiting Speed Governor Enable Switch",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "3695": {
+        "description SPN": "Indique l'état d'un interrupteur à la disposition de l'opérateur qui inhibe la régénération du post-traitement. Le contrôleur du moteur doit inhiber la régénération lorsque le SPN 3695 est à l'état ON.  La régénération doit être activée par le SPN 3696 lorsqu'il est à l'état ON et que le SPN 3695 est à l'état OFF.",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "3696": {
+        "description SPN": "Indique l'état d'un commutateur à la disposition de l'opérateur qui force la régénération du post-traitement. Le contrôleur du moteur doit inhiber la régénération lorsque le SPN 3695 est à l'état ON.  La régénération doit être activée par le SPN 3696 lorsqu'il est à l'état ON et que le SPN 3695 est à l'état OFF.",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1666": {
+        "description SPN": "Automatic Gear Shifting Enable Switch",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "2.3"
+      },
+      "1656": {
+        "description SPN": "Signal de commutation qui permet d'activer le système de gestion du ralenti. Lorsque ce système est activé alors que le moteur est en mode ralenti et que les conditions de fonctionnement sont sûres, le moteur peut être démarré ou arrêté automatiquement.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "1683": {
+        "description SPN": "Auxiliary Heater Mode Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "1685": {
+        "description SPN": "Request Engine Zone Heating",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "1686": {
+        "description SPN": "Request Cab Zone Heating",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      },
+      "2596": {
+        "description SPN": "Selected Maximum Vehicle Speed Limit",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "2.3"
+      }
+    }
+  },
+  "61442": {
+    "description": "Electronic Transmission Controller 1 - ETC1",
+    "Transmission Repetition Rate": "10 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "240",
+    "PDU Specific": "2",
+    "Default Priority": "3",
+    "Parameter Group Number": "61442",
+    "SPN": {
+      "560": {
+        "description SPN": "Driveline Engaged",
+        "longueur": "2 bit",
+        "Position de début bit/octet": "1.1"
+      },
+      "573": {
+        "description SPN": "Torque Converter Lockup Engaged",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.3"
+      },
+      "574": {
+        "description SPN": "Shift In Process",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.5"
+      },
+      "191": {
+        "description SPN": "Output Shaft Speed",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "2-3"
+      },
+      "522": {
+        "description SPN": "Percent Clutch Slip",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "606": {
+        "description SPN": "Momentary Engine Overspeed Enable",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "5.1"
+      },
+      "607": {
+        "description SPN": "Progressive Shift Disable",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "5.3"
+      },
+      "161": {
+        "description SPN": "Input Shaft Speed",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "6-7"
+      },
+      "1482": {
+        "description SPN": "Source Address of Controlling Device for Transmission Control",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "8"
+      }
+    }
+  },
+  "61443": {
+    "description": "Electronic Engine Controller 2 - EEC2",
+    "Transmission Repetition Rate": "50 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "240",
+    "PDU Specific": "3",
+    "Default Priority": "3",
+    "Parameter Group Number": "61443",
+    "SPN": {
+      "558": {
+        "description SPN": "Signal de commutation qui indique l'état du commutateur de ralenti de la pédale d'accélérateur 1.  Le commutateur de ralenti est défini dans la pratique recommandée SAE J1843.",
+        "longueur": "2 bit",
+        "Position de début bit/octet": "1.1"
+      },
+      "559": {
+        "description SPN": "Signal de commutation qui indique si le commutateur de kickdown de la pédale d'accélérateur est ouvert ou fermé.  Le commutateur de kickdown est défini dans la norme SAE J1843.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.3"
+      },
+      "1437": {
+        "description SPN": "État (actif ou non actif) du système utilisé pour limiter la vitesse maximale du véhicule. REMARQUE - Bien qu'ils soient quelque peu incohérents avec d'autres paramètres d'état J1939, les états définissant 00b = actif et 01b = inactif pour l'état de la limite de vitesse des routes ne sont PAS des erreurs typographiques et doivent être mis en œuvre comme indiqué.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.5"
+      },
+      "91": {
+        "description SPN": "Ce paramètre est destiné à la commande principale de l'accélérateur dans une application. SPN 91 est le rapport calculé entre la position réelle du dispositif d'entrée de la demande de vitesse [moteur] ou de la demande de couple [moteur] de l'opérateur (le plus souvent une pédale d'accélérateur ou un levier d'accélérateur) et la position maximale du dispositif d'entrée. Lorsque des moyens redondants sont utilisés pour détecter la position de la commande, le SPN 91 doit afficher le résultat de la méthode définie par le constructeur (c'est-à-dire calculée) pour déterminer le rapport à partir des entrées redondantes. Pour les véhicules routiers, le SPN 91 est la pédale d'accélérateur du conducteur, en position normale de conduite. En plus de signaler la demande du conducteur en matière de groupe motopropulseur, le SPN 91 fournit également des informations anticipées aux algorithmes de transmission et d'ASR sur les intentions du conducteur. Dans les applications maritimes, il s'agit généralement de la manette des gaz du conducteur. NOTE- Si une application n'a qu'une seule commande d'accélérateur, utilisez le SPN 91. Voir les SPNs 28, 29 et 974 pour des paramètres supplémentaires de position de la pédale d'accélérateur. Le SPN 9510 est un SP de diagnostic supplémentaire pour la position de la pédale d'accélérateur. Le SPN 91 représente la position combinée, réelle, de la première pédale d'accélérateur, sur la base des informations provenant de tous les capteurs de position redondants disponibles pour cette pédale. Si un interrupteur de validation de ralenti est utilisé en conjonction avec la position 1 de la pédale d'accélérateur, utilisez l'interrupteur de ralenti 1 de la pédale d'accélérateur, SPN 558. Voir SAE J1843 pour les descriptions normalisées de l'interface de position de la pédale d'accélérateur. Les SPN 9763, 2972 et 2973 peuvent être utilisés comme SP de diagnostic pour les capteurs de pédale qui prennent en charge plusieurs sorties.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "2"
+      },
+      "92": {
+        "description SPN": "Le rapport entre le pourcentage de couple réel du moteur (indiqué) et le couple maximal indiqué disponible au régime actuel du moteur, ramené à un couple nul pendant le freinage du moteur.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "3"
+      },
+      "29": {
+        "description SPN": "Rapport entre la position réelle du second dispositif d'entrée analogique de demande de régime/couple moteur (tel qu'une pédale d'accélérateur ou un levier d'accélérateur) et la position maximale du dispositif d'entrée.  Ce paramètre est destiné à la commande d'accélérateur secondaire dans une application.  Si une application n'a qu'une seule commande d'accélérateur, utilisez le paramètre SPN 91.  Dans les applications marines, il s'agit généralement de la deuxième manette d'accélérateur de l'opérateur. Si un interrupteur de validation de ralenti est utilisé en conjonction avec la position 2 de la pédale d'accélérateur, utilisez l'interrupteur de ralenti de la pédale d'accélérateur 2, SPN 2970. REMARQUE - Voir SPN 91 et 974 pour les paramètres supplémentaires de la position de l'accélérateur.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "5"
+      },
+      "974": {
+        "description SPN": "Le rapport entre la position réelle du dispositif d'entrée analogique de demande de vitesse/couple du moteur à distance (tel qu'une pédale d'accélérateur ou un levier d'accélérateur) et la position maximale du dispositif d'entrée.  Par exemple, dans les véhicules routiers, il peut s'agir d'un dispositif de commande d'accélérateur extérieur à la cabine du conducteur ou d'un accélérateur commandé par un levier manuel depuis le siège du conducteur. Le commutateur d'activation de l'accélérateur à distance est le SPN 969. Ce paramètre active le fonctionnement de l'accélérateur à distance. NOTE - Voir les numéros SPN 29 et 91 pour les paramètres supplémentaires de position de l'accélérateur. Si une seule position d'accélérateur d'accélérateur sur un véhicule, le SPN 91 doit être utilisé.  Le SPN 28 est un SP de diagnostic supplémentaire pour la position de l'accélérateur.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "2970": {
+        "description SPN": "Signal de commutation qui indique l'état du commutateur de ralenti de la pédale d'accélérateur 2.  Le commutateur de ralenti est défini dans la norme SAE J1843. Remarque : consultez également le document SPN 558 Accelerator Pedal 1 Low Idle Switch et le document SPN 2971 Accelerator Pedal 3 Low Idle Switch.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.7"
+      },
+      "2979": {
+        "description SPN": "État (actif ou non actif) du système utilisé pour limiter l'accélération maximale du véhicule vers l'avant. NOTE : Les effets des limites de contrôle des émissions, telles que le contrôle de la fumée d'échappement du moteur, sont spécifiquement exclus ; ils ne sont pas considérés comme faisant partie d'une fonction de limitation de l'accélération du véhicule.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "6.1"
+      },
+      "3357": {
+        "description SPN": "Il s'agit de la quantité maximale de couple que le moteur peut immédiatement fournir, en pourcentage du couple moteur de référence (SPN 544).  Le pourcentage de couple moteur disponible maximal réel doit tenir compte de tous les déclassements du couple moteur (par exemple, le contrôle du rapport air/carburant (AFC), le contrôle du bruit, etc.  Ce paramètre se différencie des points 1 à 5 de la carte de configuration du moteur, car il tient compte de toutes les entrées internes dynamiques, telles que l'AFC, et il est actualisé toutes les 50 ms.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "7"
+      },
+      "5021": {
+        "description SPN": "Demande momentanée d'activation de la puissance maximale du moteur - retour d'information sur le support de la fonction",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "6.3"
+      },
+      "5398": {
+        "description SPN": "Le couple calculé qui indique la quantité estimée de perte de couple due au système de traitement de l'air du moteur. La valeur transmise dans ce paramètre est incluse dans le message SPN 514 (Frottement nominal - Pourcentage de couple).  Les données sont transmises en pourcentage du couple moteur de référence (voir le message de configuration du moteur, PGN 65251).",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "8"
+      },
+      "5399": {
+        "description SPN": "Indique que les températures d'échappement ont été élevées pour la régénération du système de post-traitement du filtre à particules diesel ou en préparation de la régénération du système de post-traitement des particules diesel.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "6.5"
+      },
+      "5400": {
+        "description SPN": "Indique que les températures d'échappement ont été élevées pour la régénération du système de post-traitement SCR ou en préparation de la régénération du système de post-traitement SCR.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "6.7"
+      }
+    }
+  },
+  "61444": {
+    "numero": "F004",
+    "titre": "Electronic Engine Controller 1",
+    "abreviation": "EEC1",
+    "description": "Electronic Engine Controller 1 - EEC1 - Engine related parameters",
+    "Data Page": "0",
+    "PDU Format": "240",
+    "PDU Specific": "4",
+    "Default Priority": "3",
+    "tauxTr": "Engine speed dependent",
+    "SPN": {
+      "899": {
+        "numero": "899",
+        "titre": "Engine Torque Mode",
+        "description SPN": "Signal d'état qui indique quel mode de couple moteur est actuellement en train de générer, limiter ou contrôler le couple.  Notez que les modes ne sont pas classés par ordre de priorité. Tous les modes ne sont pas forcément pertinents pour un dispositif donné.  Certains dispositifs peuvent ne pas mettre en œuvre toutes les fonctions.  Pour des priorités typiques, voir les figures SPN512_A et SPN512_B pour le contrôle du moteur.  Le type de données de ce paramètre est mesuré.  Le mode 0000b signifie \"Pas de demande\" : le couple moteur peut aller de 0 à la pleine charge uniquement en raison de la faible sortie du régulateur de ralenti. Les modes 0001b à 1110b indiquent qu'il y a une demande de couple ou que la fonction identifiée contrôle actuellement le moteur : le couple moteur peut aller de 0 (pas d'alimentation) à la limite supérieure.",
+        "longueur": "4 bits",
+        "Position de début bit/octet": "1.1"
+      },
+      "512": {
+        "description SPN": "Le couple de sortie du moteur demandé par le conducteur. Elle est basée sur les entrées provenant des demandeurs suivants, externes au groupe motopropulseur : conducteur (via la pédale d'accélérateur), régulateur de vitesse et/ou régulateur de la vitesse limite sur route. Les commandes dynamiques des fonctions internes du groupe motopropulseur, telles que le contrôle des fumées, la régulation du moteur à basse et à haute vitesse, l'ASR et la commande de changement de vitesse, sont exclues de ce calcul. Les données sont transmises en couple indiqué en pourcentage du couple moteur de référence. Voir le PGN 65251 pour le message de configuration du moteur. Plusieurs bits d'état sont définis séparément pour indiquer la demande qui est actuellement honorée. Ce paramètre peut être utilisé pour la programmation des équipes.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "2"
+      },
+      "513": {
+        "description SPN": "Le couple de sortie calculé du moteur.  Les données sont transmises en couple indiqué en pourcentage du couple moteur de référence (voir le message de configuration du moteur, PGN 65251).  La valeur du couple en pourcentage du moteur ne sera pas inférieure à zéro et elle inclut le couple développé dans les cylindres pour surmonter les frottements.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "3"
+      },
+      "190": {
+        "numero": "190",
+        "titre": "Reception vitesse moteur",
+        "descriptionspn": "Régime réel du moteur qui est calculé sur un angle minimal de 720 degrés du vilebrequin, divisé par le nombre de cylindres.",
+        "longueur": "2 bytes",
+        "position": "4-5",
+        "resolution": "0.125 rpm/bit",
+        "offset": "0",
+        "type": "Measured",
+        "range": "0 à 8 031.875 rpm"
+      },
+      "1483": {
+        "description SPN": "L'adresse source du dispositif SAE J1939 qui commande actuellement le moteur.  Elle est utilisée pour étendre le paramètre de mode de couple (voir SPN 899) dans les cas où la commande est en réponse à un calculateur qui ne figure pas dans le tableau SPN899_A.  Sa valeur peut être l'adresse source de l'ECU qui transmet le message (ce qui signifie qu'aucun message SAE J1939 externe ne fournit la commande active) ou l'adresse source de l'ECU SAE J1939 qui fournit actuellement la commande active dans un message TSC1 (voir PGN 0) ou un message similaire.  Notez que si la valeur de ce paramètre est identique à l'adresse source du dispositif qui le transmet, la commande peut être due à un message sur une liaison de données non J1939 telle que SAE J1922 ou une liaison propriétaire.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "6"
+      },
+      "1675": {
+        "description SPN": "Il existe plusieurs phases dans une action de démarrage et différentes raisons pour lesquelles un démarrage ne peut avoir lieu.",
+        "longueur": "4 bits",
+        "Position de début bit/octet": "7.1"
+      },
+      "2432": {
+        "description SPN": "Le couple de sortie demandé au moteur par toutes les entrées internes dynamiques, y compris le contrôle des fumées, le contrôle du bruit et la régulation à basse et haute vitesse.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "8"
+      },
+      "4154": {
+        "description SPN": "Ce paramètre affiche un couple supplémentaire en pourcentage du couple moteur de référence.",
+        "longueur": "4 bits",
+        "Position de début bit/octet": "1.5"
+      }
+    }
+  },
+  "61445": {
+    "description": "Electronic Transmission Controller 2 - ETC2",
+    "Transmission Repetition Rate": "100 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "240",
+    "PDU Specific": "5",
+    "Default Priority": "6",
+    "Parameter Group Number": "61445",
+    "SPN": {
+      "524": {
+        "description SPN": "Selected Gear",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "526": {
+        "description SPN": "Actual Gear Ratio",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "2-3"
+      },
+      "523": {
+        "description SPN": "Current Gear",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "162": {
+        "description SPN": "Transmission Requested Range",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "5-6"
+      }
+    }
+  },
+  "61448": {
+    "description": "Hydraulic Pressure Governor Info - HPG",
+    "Transmission Repetition Rate": "50 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "240",
+    "PDU Specific": "8",
+    "Default Priority": "6",
+    "Parameter Group Number": "61448",
+    "SPN": {
+      "1762": {
+        "description SPN": "Hydraulic Pressure",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "1-2"
+      },
+      "1763": {
+        "description SPN": "Hydraulic Pressure Mode Indicator",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "3.1"
+      },
+      "1764": {
+        "description SPN": "Hydraulic Pressure Governor Switch",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "3.3"
+      },
+      "2599": {
+        "description SPN": "Fire Apparatus Pump Engagement",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "3.5"
+      }
+    }
+  },
+  "65031": {
+    "description": "Exhaust Temperature - ET",
+    "Transmission Repetition Rate": "500 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "7",
+    "Default Priority": "6",
+    "Parameter Group Number": "65031",
+    "SPN": {
+      "2433": {
+        "description SPN": "Température des sous-produits de combustion mesurée dans le collecteur d'échappement du banc 2 (rive droite) du moteur. Les moteurs à collecteur unique doivent utiliser la température d'échappement (SPN 173).",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "1-2"
+      },
+      "2434": {
+        "description SPN": "Température des sous-produits de combustion mesurée dans le collecteur d'échappement du banc 1 (rive gauche) du moteur.  Les moteurs à collecteur unique doivent utiliser la température d'échappement (SPN 173).",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "3-4"
+      },
+      "5969": {
+        "description SPN": "Température des sous-produits de combustion mesurée par un deuxième capteur dans le collecteur d'échappement du banc 2 (rive droite) du moteur. Il s'agit du capteur situé vers l'arrière du moteur sur le collecteur du banc 2.",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "5-6"
+      },
+      "5970": {
+        "description SPN": "Température des sous-produits de combustion mesurée par un deuxième capteur dans le collecteur d'échappement du banc 1 (rive gauche) du moteur. Il s'agit du capteur situé vers l'arrière du moteur sur le collecteur du banc 1.",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "7-8"
+      }
+    }
+  },
+  "65159": {
+    "description": "Exhaust Temperature - ET",
+    "Transmission Repetition Rate": "On request",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "135",
+    "Default Priority": "7",
+    "Parameter Group Number": "65159",
+    "SPN": {
+      "1433": {
+        "description SPN": "Desired Ignition Timing #1",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "1-2"
+      },
+      "1434": {
+        "description SPN": "Desired Ignition Timing #2",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "3-4"
+      },
+      "1435": {
+        "description SPN": "Desired Ignition Timing #3",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "5-6"
+      },
+      "1436": {
+        "description SPN": "Actual Ignition Timing",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "7-8"
+      }
+    }
+  },
+  "65164": {
+    "description": "Auxiliary Analog Information - AAI",
+    "Transmission Repetition Rate": "On request",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "140",
+    "Default Priority": "7",
+    "Parameter Group Number": "65164",
+    "SPN": {
+      "441": {
+        "description SPN": "Auxiliary Temperature 1",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "442": {
+        "description SPN": "Auxiliary Temperature 2",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "2"
+      },
+      "1387": {
+        "description SPN": "Auxiliary Pressure #1",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "3"
+      },
+      "1388": {
+        "description SPN": "Auxiliary Pressure #2",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      }
+    }
+  },
+  "65241": {
+    "description": "Auxiliary Input/Output Status - AUXIO",
+    "Transmission Repetition Rate": "Manufacturer defined, not faster than 100 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "217",
+    "Default Priority": "6",
+    "Parameter Group Number": "65241",
+    "SPN": {
+      "704": {
+        "description SPN": "Auxiliary I/O #04",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.1"
+      },
+      "703": {
+        "description SPN": "Auxiliary I/O #03",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.3"
+      },
+      "702": {
+        "description SPN": "Auxiliary I/O #02",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.5"
+      },
+      "701": {
+        "description SPN": " Auxiliary I/O #01",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.7"
+      },
+      "708": {
+        "description SPN": "Auxiliary I/O #08",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "2.1"
+      },
+      "707": {
+        "description SPN": "Auxiliary I/O #07",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "2.3"
+      },
+      "706": {
+        "description SPN": "Auxiliary I/O #06",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "2.5"
+      },
+      "705": {
+        "description SPN": "Auxiliary I/O #05",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "2.7"
+      },
+      "712": {
+        "description SPN": "Auxiliary I/O #12",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "3.1"
+      },
+      "711": {
+        "description SPN": "Auxiliary I/O #11",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "3.3"
+      },
+      "710": {
+        "description SPN": "Auxiliary I/O #10",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "3.5"
+      },
+      "709": {
+        "description SPN": "Auxiliary I/O #09",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "3.7"
+      },
+      "716": {
+        "description SPN": "Auxiliary I/O #16",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "4.1"
+      },
+      "715": {
+        "description SPN": "Auxiliary I/O #15",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "4.3"
+      },
+      "714": {
+        "description SPN": "Auxiliary I/O #14",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "4.5"
+      },
+      "713": {
+        "description SPN": "Auxiliary I/O #13",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "4.7"
+      },
+      "1083": {
+        "description SPN": "Auxiliary I/O Channel #1",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "5-6"
+      },
+      "1084": {
+        "description SPN": "Auxiliary I/O Channel #2",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "7-8"
+      }
+    }
+  },
+  "65247": {
+    "description": "Electronic Engine Controller 3 - EEC3",
+    "Transmission Repetition Rate": "250 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "223",
+    "Default Priority": "6",
+    "Parameter Group Number": "65247",
+    "SPN": {
+      "514": {
+        "description SPN": "Nominal Friction - Percent Torque",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "515": {
+        "description SPN": "Engine's Desired Operating Speed",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "2-3"
+      },
+      "519": {
+        "description SPN": "Engine's Desired Operating Speed Asymmetry Adjustment",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      }
+    }
+  },
+  "65248": {
+    "description": "Vehicle Distance - VD",
+    "Transmission Repetition Rate": "100 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "224",
+    "Default Priority": "6",
+    "Parameter Group Number": "65248",
+    "SPN": {
+      "244": {
+        "description SPN": "Trip Distance",
+        "longueur": "4 bytes",
+        "Position de début bit/octet": "1-4"
+      },
+      "245": {
+        "description SPN": "Total Vehicle Distance",
+        "longueur": "4 bytes",
+        "Position de début bit/octet": "5-8"
+      }
+    }
+  },
+  "65253": {
+    "description": "Engine Hours, Revolutions - HOURS",
+    "Transmission Repetition Rate": "On request",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "229",
+    "Default Priority": "6",
+    "Parameter Group Number": "65253",
+    "SPN": {
+      "247": {
+        "description SPN": "Total Engine Hours",
+        "longueur": "4 bytes",
+        "Position de début bit/octet": "1-4"
+      },
+      "249": {
+        "description SPN": "Total Engine Revolutions",
+        "longueur": "4 bytes",
+        "Position de début bit/octet": "5-8"
+      }
+    }
+  },
+  "65257": {
+    "description": "Engine Hours, Revolutions - HOURS",
+    "Transmission Repetition Rate": "On request",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "229",
+    "Default Priority": "6",
+    "Parameter Group Number": "65257",
+    "SPN": {
+      "182": {
+        "description SPN": "Trip Fuel",
+        "longueur": "4 bytes",
+        "Position de début bit/octet": "1-4"
+      },
+      "250": {
+        "description SPN": "Total Fuel Used",
+        "longueur": "4 bytes",
+        "Position de début bit/octet": "5-8"
+      }
+    }
+  },
+  "65262": {
+    "description": "Engine Temperature 1 - ET1",
+    "Transmission Repetition Rate": "1 s",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "238",
+    "Default Priority": "6",
+    "Parameter Group Number": "65262",
+    "SPN": {
+      "110": {
+        "description SPN": "Engine Coolant Temperature",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "174": {
+        "description SPN": "Fuel Temperature",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "2"
+      },
+      "175": {
+        "description SPN": "Engine Oil Temperature 1",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "3-4"
+      },
+      "176": {
+        "description SPN": "Turbo Oil Temperature",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "5-6"
+      },
+      "52": {
+        "description SPN": "Engine Intercooler Temperature",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "7"
+      },
+      "1134": {
+        "description SPN": "Engine Intercooler Thermostat Opening",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "8"
+      }
+    }
+  },
+  "65263": {
+    "description": "Engine Fluid Level/Pressure 1 - EFL/P1",
+    "Transmission Repetition Rate": "500 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "239",
+    "Default Priority": "6",
+    "Parameter Group Number": "65263",
+    "SPN": {
+      "94": {
+        "description SPN": "Fuel Delivery Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "22": {
+        "description SPN": "Extended Crankcase Blow-by Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "2"
+      },
+      "98": {
+        "description SPN": "Engine Oil Level",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "3"
+      },
+      "100": {
+        "description SPN": "Engine Oil Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "101": {
+        "description SPN": "Crankcase Pressure",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "5-6"
+      },
+      "109": {
+        "description SPN": "Coolant Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "7"
+      },
+      "111": {
+        "description SPN": "Coolant Level",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "8"
+      }
+    }
+  },
+  "65266": {
+    "description": "Fuel Economy (Liquid) - LFE",
+    "Transmission Repetition Rate": "100 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "242",
+    "Default Priority": "6",
+    "Parameter Group Number": "65266",
+    "SPN": {
+      "183": {
+        "description SPN": "Fuel Rate",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "1-2"
+      },
+      "184": {
+        "description SPN": "Instantaneous Fuel Economy",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "3-4"
+      },
+      "185": {
+        "description SPN": "Average Fuel Economy",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "5-6"
+      },
+      "51": {
+        "description SPN": "Throttle Position",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "7"
+      }
+    }
+  },
+  "65270": {
+    "description": "Fuel Economy (Liquid) - LFE",
+    "Transmission Repetition Rate": "500 ms",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "254",
+    "PDU Specific": "246",
+    "Default Priority": "6",
+    "Parameter Group Number": "65270",
+    "SPN": {
+      "81": {
+        "description SPN": "Particulate Trap Inlet Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "102": {
+        "description SPN": "Boost Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "2"
+      },
+      "105": {
+        "description SPN": "Intake Manifold 1 Temperature",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "3"
+      },
+      "106": {
+        "description SPN": "Air Inlet Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "107": {
+        "description SPN": "Air Filter 1 Differential Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "5"
+      },
+      "173": {
+        "description SPN": "Exhaust Gas Temperature",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "6-7"
+      },
+      "112": {
+        "description SPN": "Coolant Filter Differential Pressure",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "8"
+      }
+    }
+  },
+  "65213": {
+    "description": "Ce PGN transfère des informations d'état et de mesure pour un ventilateur de refroidissement moteur. Il est utilisé pour le ventilateur principal s'il y a plus d'un ventilateur dans le système le PGN \"FD31\" peut être utilisé pour un deuxième ventilateur.",
+    "Transmission Repetition Rate": "",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "",
+    "PDU Specific": "",
+    "Default Priority": "",
+    "Parameter Group Number": "65213",
+    "SPN": {
+      "975": {
+        "description SPN": "Vitesse estimée du ventilateur en tant que rapport entre l'entraînement du ventilateur (vitesse actuelle) et l'entraînement du ventilateur complètement engagé (vitesse maximale du ventilateur).  Un ventilateur à deux états (arrêt/marche) utilisera respectivement 0 % et 100 %.  Un ventilateur à trois états (arrêt/intermédiaire/marche) utilisera respectivement 0 %, 50 % et 100 %.  Un ventilateur à vitesse variable utilisera 0 % à 100 %. Les systèmes à ventilateurs multiples utiliseront 0 à 100 % pour indiquer le pourcentage de la capacité de refroidissement fournie.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "977": {
+        "description SPN": "Ce paramètre est utilisé pour indiquer l'état ou le mode de fonctionnement actuel de l'entraînement du ventilateur.",
+        "longueur": "4 bits",
+        "Position de début bit/octet": "2.1"
+      },
+      "1639": {
+        "description SPN": "The speed of the fan associated with engine coolant system.",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "3-4"
+      },
+      "4211": {
+        "description SPN": "La pression hydraulique utilisée pour entraîner le système de ventilation, détectée avant le moteur hydraulique du ventilateur.",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "5-6"
+      },
+      "4212": {
+        "description SPN": "État de la commande de dérivation de l'entraînement du ventilateur telle qu'elle est commandée par le calculateur.  La dérivation de l'entraînement du ventilateur détourne la pression de la pompe du moteur hydraulique pour maintenir la pression d'entraînement du ventilateur.  0% est défini comme absence de dérivation (c'est-à-dire qu'il n'y a pas de dérivation de la pression d'entraînement du ventilateur) et 100% est défini comme dérivation totale (c'est-à-dire qu'il y a dérivation de la pression d'entraînement maximale du ventilateur) du moteur du ventilateur.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "7"
+      }
+    }
+  },
+  "52992": {
+    "description": "Continuous Torque & Speed Limit Request",
+    "Transmission Repetition Rate": "",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "",
+    "PDU Specific": "",
+    "Default Priority": "6",
+    "Parameter Group Number": "52992",
+    "SPN": {
+      "1784": {
+        "description SPN": "Engine Speed Limit Request - Minimum Continuous",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "1"
+      },
+      "1785": {
+        "description SPN": "Engine Speed Limit Request - Maximum Continuous",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "2"
+      },
+      "1786": {
+        "description SPN": "Engine Torque Limit Request - Minimum Continuous",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "3"
+      },
+      "1787": {
+        "description SPN": "Engine Torque Limit Request - Maximum Continuous",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "4"
+      },
+      "1788": {
+        "description SPN": "Minimum Continuous Retarder Speed Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "5"
+      },
+      "1789": {
+        "description SPN": "Maximum Continuous Retarder Speed Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "6"
+      },
+      "1790": {
+        "description SPN": "Minimum Continuous Retarder Torque Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "7"
+      },
+      "1791": {
+        "description SPN": "Maximum Continuous Retarder Torque Limit Request",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "8"
+      }
+    }
+  },
+  "65350": {
+    "description": "See document J1939-21 for PG details.",
+    "Transmission Repetition Rate": "",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "",
+    "PDU Specific": "",
+    "Default Priority": "6",
+    "Parameter Group Number": "65350",
+    "SPN": {}
+  },
+  "65353": {
+    "description": "See document J1939-21 for PG details.",
+    "Transmission Repetition Rate": "",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "",
+    "PDU Specific": "",
+    "Default Priority": "6",
+    "Parameter Group Number": "65353",
+    "SPN": {}
+  },
+  "59904": {
+    "description": "Request, see document J1939-21 for PG details.",
+    "Transmission Repetition Rate": "",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "",
+    "PDU Specific": "",
+    "Default Priority": "6",
+    "Parameter Group Number": "59904",
+    "SPN": {
+      "2540": {
+        "description SPN": "Parameter Group Number (RQST), see document J1939-21 for SP details.",
+        "longueur": "",
+        "Position de début bit/octet": ""
+      }
+    }
+  },
+  "65351": {
+    "description": "Proprietary B, see document J1939-21 for PG details.",
+    "Transmission Repetition Rate": "",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "",
+    "PDU Specific": "",
+    "Default Priority": "6",
+    "Parameter Group Number": "65351",
+    "SPN": {}
+  },
+  "65279": {
+    "description": "Operator indicators",
+    "Transmission Repetition Rate": "",
+    "Data longueur": "8 bytes",
+    "Data Page": "0",
+    "PDU Format": "",
+    "PDU Specific": "",
+    "Default Priority": "6",
+    "Parameter Group Number": "65279",
+    "SPN": {
+      "97": {
+        "description SPN": "Signal qui indique la présence d'eau dans le carburant.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.1"
+      },
+      "355": {
+        "description SPN": "Signal qui indique la durée de vie réelle de l'huile restante en pourcentage. 100% signifie que l'huile moteur est neuve, et 0% signifie que l'huile moteur est en fin de vie.",
+        "longueur": "1 byte",
+        "Position de début bit/octet": "6"
+      },
+      "5675": {
+        "description SPN": "Commande permettant d'activer un indicateur qui conseille à l'opérateur de passer à un autre rapport.  Cette commande est généralement utilisée dans le cadre d'une amélioration de la consommation de carburant ou d'une aide à la conduite.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "2.1"
+      },
+      "5825": {
+        "description SPN": "L'éclairage souhaité de l'indicateur du système d'alerte du conducteur défini par la norme Euro VI pour les dysfonctionnements pertinents et le niveau bas du réservoir de fluide d'échappement diesel (réactif).  Utilisé pour les mises en œuvre de la norme Euro VI.  Voir le règlement d'application Euro VI, annexe XIII, section 4, pour les exigences d'utilisation.",
+        "longueur": "3 bits",
+        "Position de début bit/octet": "2.4"
+      },
+      "6301": {
+        "description SPN": "Un deuxième indicateur de la présence d'eau dans le carburant.  Voir aussi SPN 97.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.5"
+      },
+      "8428": {
+        "description SPN": "Estimation de la distance restante en fonction de l'approvisionnement en carburant existant.",
+        "longueur": "2 bytes",
+        "Position de début bit/octet": "3-4"
+      },
+      "8611": {
+        "description SPN": "Signal qui indique la présence d'eau dans le conduit d'air de suralimentation après le refroidisseur d'air de suralimentation.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "2.7"
+      },
+      "8612": {
+        "description SPN": "Signal qui indique que le moteur est surchargé.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "1.7"
+      },
+      "9373": {
+        "description SPN": "Signal d'état indiquant une demande du moteur pour que l'indicateur d'inhibition de demande de démarrage automatique soit actif ou inactif. L'indicateur d'inhibition de démarrage peut se présenter sous la forme d'une lampe ou d'un texte, situé sur (mais sans s'y limiter) la console de changement de vitesse, le groupe d'instruments ou l'écran de la cabine. Les fabricants de moteurs peuvent vouloir indiquer qu'ils ne peuvent actuellement pas effectuer le démarrage demandé.  Cela peut être dû à des conditions de moteur inappropriées ou à d'autres restrictions. Les distinctions de signification entre le continu et le clignotant sont laissées au constructeur du moteur.",
+        "longueur": "2 bits",
+        "Position de début bit/octet": "5.1"
+      }
+    }
+  }
+}
